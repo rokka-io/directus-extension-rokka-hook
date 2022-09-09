@@ -1,4 +1,4 @@
-# rokka-extension
+# directus-extension-rokka-hook
 
 A Directus extension, synchronising images and files from Directus to [rokka.io](https://rokka.io/).
 
@@ -18,7 +18,7 @@ Clone the repository, and build the exention. Copy the single `index.js` from th
 
 WIP : I will package this extension and script the build and install.
 
-## Extention configuration
+## Extension configuration
 This extension takes its configuration from environment variables.
 
 ### ROKKA_DISABLED
