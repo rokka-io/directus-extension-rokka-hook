@@ -18,9 +18,9 @@ export class FileUploadedHook {
 	}
 
 	private async uploadImage(record: any) {
-		const storage = getStorage(record.payload.storage);
+		const storage = getStorage();
 
-		const { exists } = await storage.exists(record.payload.filename_disk);
+		const exists = await storage.exists(record.payload.filename_disk);
 
 		if (!exists) {
 			throw new RokkaException(
@@ -30,7 +30,7 @@ export class FileUploadedHook {
 			);
 		}
 
-		const stream = storage.getStream(record.payload.filename_disk);
+		const stream = storage.read(record.payload.filename_disk);
 
 		const rokkaHash = await this.rokkaClient.upload(record.payload.filename_download, stream);
 

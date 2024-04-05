@@ -1,16 +1,6 @@
-import { EventContext } from '@directus/shared/src/types/events';
-import { ApiExtensionContext } from '@directus/shared/src/types/extensions';
+import { EventContext } from '@directus/types';
 
-// HookExtensionContext is not exported in hooks.ts so we declare it here again
-type HookExtensionContext = ApiExtensionContext & {
-	emitter: any;
-};
-
-export const getItemService = (
-	hookContext: HookExtensionContext,
-	record: Record<string, any>,
-	context: EventContext
-) => {
+export const getItemService = (hookContext: any, record: Record<string, any>, context: EventContext) => {
 	const { ItemsService } = hookContext.services;
 	return new ItemsService(record.collection, {
 		schema: context.schema,
