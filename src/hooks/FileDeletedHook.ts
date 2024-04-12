@@ -23,8 +23,8 @@ export class FileDeletedHook {
 		this.logger.info('This file is the only once linked to Rokka. Deleting on Rokka.');
 		try {
 			await this.rokkaClient.delete(rokkaHashToDelete);
-		} catch (e) {
-			if (e.body.error.code === 404) {
+		} catch (e: any) {
+			if (e.body?.error?.code === 404) {
 				this.logger.error(e.body.error.message);
 			} else {
 				this.logger.error(`error deleting image with hash ${rokkaHashToDelete}`, e);

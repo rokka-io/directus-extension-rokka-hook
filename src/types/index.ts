@@ -1,6 +1,3 @@
-import { StackOperation, StackOptions } from 'rokka/dist/apis/stacks';
-import { Expression } from 'rokka/dist/apis/expressions';
-
 export interface StackConfig {
 	stackName: string;
 	operations: string[];
@@ -14,13 +11,4 @@ export enum ResizeMode {
 	Box = 'box',
 	Fill = 'fill',
 	Absolute = 'absolute',
-}
-
-export interface Stack {
-	name: string;
-	config: {
-		operations?: StackOperation[];
-		options?: StackOptions;
-		expressions?: Expression[];
-	};
 }

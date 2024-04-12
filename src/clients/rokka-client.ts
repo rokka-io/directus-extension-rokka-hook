@@ -1,6 +1,5 @@
 import rokka from 'rokka';
 import { Logger } from 'pino';
-import { RokkaApi } from 'rokka/dist/apis';
 import { RokkaException } from '../exceptions';
 import { ResizeMode, StackConfig } from '../types';
 import { getRokkaConfiguration, RokkaConfiguration } from '../utils/environment';
@@ -16,7 +15,7 @@ const SUPPORTED_IMAGE_TYPES: string[] = [
 ];
 
 export class RokkaClient {
-	rokkaApi: RokkaApi;
+	rokkaApi;
 	rokkaConfiguration: RokkaConfiguration;
 
 	constructor(private logger: Logger) {
@@ -92,8 +91,8 @@ export class RokkaClient {
 				try {
 					await this.rokkaApi.sourceimages.delete(this.rokkaConfiguration.organization, image.hash);
 					this.logger.info(`deleted image ${image.hash}`);
-				} catch (e) {
-					if (e.body.error.code === 404) {
+				} catch (e: any) {
+					if (e.body?.error?.code === 404) {
 						this.logger.error(`image ${image.hash} was already gone`);
 					} else {
 						this.logger.error(`error deleting image ${image.hash}`, e);
